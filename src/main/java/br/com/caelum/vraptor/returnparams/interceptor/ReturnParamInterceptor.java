@@ -9,8 +9,10 @@ import br.com.caelum.vraptor.http.ParameterNameProvider;
 import br.com.caelum.vraptor.interceptor.ExecuteMethodInterceptor;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.interceptor.ParametersInstantiatorInterceptor;
+import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 
+@Component
 @Intercepts(before=ExecuteMethodInterceptor.class, after = ParametersInstantiatorInterceptor.class)
 public class ReturnParamInterceptor implements Interceptor{
 
