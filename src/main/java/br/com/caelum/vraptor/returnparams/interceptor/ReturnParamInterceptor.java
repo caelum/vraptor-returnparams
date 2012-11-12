@@ -9,18 +9,18 @@ import br.com.caelum.vraptor.http.ParameterNameProvider;
 import br.com.caelum.vraptor.interceptor.ExecuteMethodInterceptor;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.interceptor.ParametersInstantiatorInterceptor;
-import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 
-@Component
-@Intercepts(before=ExecuteMethodInterceptor.class, after = ParametersInstantiatorInterceptor.class)
+@Intercepts(before=ExecuteMethodInterceptor.class, after=ParametersInstantiatorInterceptor.class)
 public class ReturnParamInterceptor implements Interceptor{
 
 	private final MethodInfo info;
 	private final Result result;
 	private final ParameterNameProvider nameProvider;
 
-	public ReturnParamInterceptor(Result result, MethodInfo info, ParameterNameProvider nameProvider) {
+	public ReturnParamInterceptor(Result result, MethodInfo info,
+			ParameterNameProvider nameProvider) {
+		
 		this.result = result;
 		this.info = info;
 		this.nameProvider = nameProvider;
@@ -32,7 +32,9 @@ public class ReturnParamInterceptor implements Interceptor{
 	}
 
 	@Override
-	public void intercept(InterceptorStack stack, ResourceMethod method, Object instance) throws InterceptionException {
+	public void intercept(InterceptorStack stack, ResourceMethod method, 
+			Object instance) throws InterceptionException {
+		
 		Object[] parameters = info.getParameters();
 		String[] names = nameProvider.parameterNamesFor(method.getMethod());
 		for(int i=0;i< names.length;i++) {
@@ -40,5 +42,4 @@ public class ReturnParamInterceptor implements Interceptor{
 		}
 		stack.next(method, instance);
 	}
-	
 }

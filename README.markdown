@@ -1,6 +1,6 @@
 ## vraptor-returnparams
 
-Retorna os parâmetros passados ao controller para sua view.
+Return all the controller passed parameters to your view.
 
 # installing
 
